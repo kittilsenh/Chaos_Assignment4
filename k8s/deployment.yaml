@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myflaskapp
+spec:
+  replicas: 1  # Specifies the number of replicas. Adjust as needed.
+  selector:
+    matchLabels:
+      app: myflaskapp  # This label selector must match the labels of your pod template.
+  template:
+    metadata:
+      labels:
+        app: myflaskapp  # Labels for pod selection. Must match the selector above.
+      annotations:
+        prometheus.io/scrape: 'true'  # Tells Prometheus to scrape metrics from these pods.
+        prometheus.io/path: '/metrics'  # The path where metrics are exposed.
+        prometheus.io/port: '5000'  # The port on which the app is exposing metrics.
+    spec:
+      containers:
+      - name: myflaskapp-container
+        image: myflaskapp:latest  # Ensure this matches the image name you built.
+        imagePullPolicy: IfNotPresent  # Use the locally available image, if present.
+        ports:
+        - containerPort: 5000  # The port your app runs on. Should match the prometheus.io/port annotation.

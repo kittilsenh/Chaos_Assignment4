@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Payment</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
+
+    <style>
+        body { padding-top: 20px; }
+        .container { max-width: 400px; }
+        .stripe-button-el { width: 100% !important; margin-top: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="mb-4">Donation Page</h2>
+    <form action="/charge" method="post">
+        <div class="form-group">
+            <label for="amount">Donation Amount (USD):</label>
+            <p>$5.00</p>
+        </div>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="{{ public_key }}"
+                data-amount="500"
+                data-name="Stripe.com"
+                data-description="Test Charge"
+                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                data-locale="auto"
+                data-currency="usd">
+        </script>
+    </form>
+</div>
+</body>
+</html>
