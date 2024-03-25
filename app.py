@@ -3,12 +3,11 @@ import stripe
 import pybreaker
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from prometheus_flask_exporter import PrometheusMetrics
 
 
 app = Flask(__name__)
 
-metrics = PrometheusMetrics(app)
+
 
 # Stripe API keys
 public_key = "pk_test_51Ot6a6F30zvOkJGCS0GTYbkzirFVbRJqPMnkfaH3XsTpniIdmxZhnwm48qqJtzjrSY7u366FkNCjcHQlZWk0FSC100euMGM77q"
